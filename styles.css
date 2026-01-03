@@ -246,6 +246,7 @@ section h2 {
     max-width: 80%;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+    background-color: white;
 }
 
 /* Alert/Warning Boxes */

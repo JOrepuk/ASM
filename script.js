@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const sidebar = document.querySelector('.sidebar');
                 const menuToggle = document.querySelector('.menu-toggle');
 
-                if (window.innerWidth <= 900 && sidebar.classList.contains('open')) {
+                if (sidebar.classList.contains('open')) {
                     sidebar.classList.remove('open');
                     if (menuToggle) {
                         menuToggle.textContent = '☰';
