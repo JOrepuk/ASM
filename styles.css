@@ -89,7 +89,14 @@ body {
     margin-left: var(--sidebar-width);
     width: calc(100% - var(--sidebar-width));
     padding: 40px 60px;
-    max-width: 1200px;
+    /* max-width removed to allow centering of children */
+}
+
+.main-content>* {
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 
 /* Hero Section */
@@ -129,6 +136,10 @@ body {
 
 .hero-image img {
     max-width: 100%;
+    max-height: 500px;
+    /* Prevent it from getting too tall on huge screens */
+    width: auto;
+    /* Maintain aspect ratio */
     border-radius: var(--border-radius);
     /* animation: float 6s ease-in-out infinite; */
 }
@@ -319,15 +330,137 @@ footer {
 }
 
 /* Responsive */
+@media (min-width: 901px) and (max-width: 1100px) {
+    .main-content {
+        padding: 40px 30px;
+    }
+
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 30px;
+    }
+
+    .hero-text {
+        padding: 0 40px;
+        margin-top: 5px;
+    }
+
+    .hero-image img {
+        max-width: 50%;
+        margin-bottom: 5px;
+        max-height: 400px;
+    }
+}
+
+/* Responsive Cards Grid (Tablet and up) */
+@media (min-width: 768px) {
+    .cards-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr !important;
+        /* Force 2 columns */
+        gap: 20px;
+    }
+
+    .cards-grid>.card:last-child:nth-child(2n+1) {
+        grid-column: span 2;
+    }
+}
+
+/* Large Screens (>1200px) */
+@media (min-width: 1201px) {
+    .split-section {
+        display: flex;
+        flex-direction: row;
+        /* Grid left, Image right */
+        align-items: flex-start;
+        /* Top align to prevent overlap/floating */
+        gap: 40px;
+        margin-top: 20px;
+        /* Ensure spacing from top content */
+    }
+
+    .split-section .grid-3.cards-grid {
+        flex: 1.5;
+        /* Gives cards slightly more space than image if needed, or 1 for equal */
+        /* Grid properties inherited from global .cards-grid rule above */
+        margin-top: 0;
+        /* Remove top margin to align perfectly with image/start of flex container */
+    }
+
+    /* Orphan logic inherited */
+
+    /* Also handle non-card content in split section (like lists) */
+    .split-section .content-block {
+        flex: 1.5;
+        margin-top: 0;
+    }
+
+    .split-section .img-container {
+        flex: 1;
+        max-width: 45%;
+        margin: 0;
+        /* Removed flex centering to default to top-left block flow */
+    }
+
+    .split-section .img-container img {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+        /* Natural height */
+        object-fit: contain;
+        max-height: 600px;
+    }
+}
+
+/* Full Width Image Helper */
+.full-width-image {
+    width: 100%;
+    margin: 20px 0;
+    justify-content: center;
+    background: transparent;
+}
+
+.full-width-image img {
+    max-width: 100% !important;
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+    /* Optional: cleaner look for diagrams */
+}
+
+/* Equal Split Modifier for Monitoring */
+@media (min-width: 1201px) {
+
+    .split-section.equal-split .img-container,
+    .split-section.equal-split .content-block {
+        flex: 1;
+        max-width: 50%;
+    }
+
+    .split-section.equal-split .img-container {
+        /* Reset specific diagram constraints if needed */
+        align-items: flex-start;
+    }
+}
+
 @media (max-width: 900px) {
     .hero {
         flex-direction: column-reverse;
         text-align: center;
+        padding-top: 20px;
+        /* Add some spacing from top */
+    }
+
+    .hero-image img {
+        max-width: 60%;
+        /* Prevent huge image on mobile */
+        margin-bottom: 20px;
     }
 
     .hero-text {
         padding: 0 20px;
-        margin-top: 30px;
+        margin-top: 10px;
     }
 
     .hero-text h1 {

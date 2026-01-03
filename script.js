@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Intersection Observer for Active Link
     const observerOptions = {
         root: null,
-        rootMargin: '-20% 0px -60% 0px',
-        threshold: 0
+        rootMargin: '0px 0px -20% 0px', // Triggers when element is 20% into the viewport from bottom
+        threshold: 0.1
     };
 
     const observer = new IntersectionObserver((entries) => {
