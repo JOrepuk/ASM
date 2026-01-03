@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bezpieczeństwo w sieciach lokalnych – najlepsze praktyki</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <button class="menu-toggle">☰</button>
+
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h2>Bezpieczeństwo LAN</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#slide1" class="active">Wprowadzenie</a></li>
+            <li><a href="#slide2">Zagrożenia</a></li>
+            <li><a href="#slide3">Triada CIA</a></li>
+            <li><a href="#slide4">Podejście projektowe</a></li>
+            <li><a href="#slide5">Inwentaryzacja</a></li>
+            <li><a href="#slide6">Architektura</a></li>
+            <li><a href="#slide7">Kontrola ruchu</a></li>
+            <li><a href="#slide8">Kontrola dostępu</a></li>
+            <li><a href="#slide9">IEEE 802.1X</a></li>
+            <li><a href="#slide10">Warstwa druga</a></li>
+            <li><a href="#slide11">Bezpieczeństwo Wi-Fi</a></li>
+            <li><a href="#slide12">Zarządzanie</a></li>
+            <li><a href="#slide13">Utrzymanie</a></li>
+            <li><a href="#slide14">Usługi infrastrukturalne</a></li>
+            <li><a href="#slide15">Monitoring</a></li>
+            <li><a href="#slide16">Kopie zapasowe</a></li>
+            <li><a href="#slide17">Reagowanie</a></li>
+            <li><a href="#slide18">Podsumowanie</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <!-- SLIDE 1 -->
+        <section id="slide1" class="hero visible">
+            <div class="hero-text">
+                <h1>Bezpieczeństwo w sieciach lokalnych</h1>
+                <p>Najlepsze praktyki, zasady i mechanizmy ochrony infrastruktury LAN.</p>
+            </div>
+            <div class="hero-image">
+                <img src="hero.png" alt="Bezpieczeństwo sieci - ilustracja">
+            </div>
+        </section>
+
+        <section>
+            <h2>Wprowadzenie</h2>
+            <div class="content-block">
+                <h3>Czym jest sieć lokalna?</h3>
+                <p>Sieć lokalna (LAN – Local Area Network) to infrastruktura, która umożliwia komunikację pomiędzy
+                    komputerami, serwerami i innymi urządzeniami w obrębie jednego budynku, firmy lub organizacji. To
+                    właśnie w sieci lokalnej:</p>
+                <ul>
+                    <li>użytkownicy logują się do systemów,</li>
+                    <li>przechowywane są dane firmowe,</li>
+                    <li>działają serwery plików, aplikacji i usług,</li>
+                    <li>komunikują się drukarki, kamery, urządzenia IoT.</li>
+                </ul>
+                <div class="alert-box">
+                    <p>LAN jest kręgosłupem całego środowiska IT – jeśli sieć lokalna przestaje działać albo zostaje
+                        naruszona, skutki odczuwa cała organizacja.</p>
+                </div>
+
+                <h3>Czym jest bezpieczeństwo sieci lokalnej?</h3>
+                <p>Bezpieczeństwo sieci lokalnej to zestaw zasad, mechanizmów i działań, których celem jest:</p>
+                <ul>
+                    <li>ochrona danych przesyłanych i przechowywanych w sieci,</li>
+                    <li>ochrona urządzeń i usług przed nieautoryzowanym dostępem,</li>
+                    <li>zapewnienie stabilnego i ciągłego działania sieci,</li>
+                    <li>ograniczenie skutków błędów, awarii i incydentów.</li>
+                </ul>
+                <p>Nie jest to jedno urządzenie ani jedno ustawienie. Bezpieczeństwo LAN to sposób projektowania,
+                    konfigurowania i utrzymywania sieci.</p>
+            </div>
+
+            <div class="content-block">
+                <h3>Dlaczego sieć lokalna wymaga zabezpieczeń?</h3>
+                <div class="info-box">
+                    <p>Częstym błędem jest przekonanie, że: „sieć lokalna jest bezpieczna, bo jest wewnętrzna”.</p>
+                </div>
+                <p>W rzeczywistości sieć lokalna:</p>
+                <ul>
+                    <li>zawiera najcenniejsze dane,</li>
+                    <li>ma bezpośredni dostęp do systemów krytycznych,</li>
+                    <li>jest używana przez wielu użytkowników o różnym poziomie świadomości,</li>
+                    <li>często łączy urządzenia o bardzo różnym poziomie zabezpieczeń.</li>
+                </ul>
+                <p>Wystarczy jedno słabe ogniwo (np. zainfekowany komputer, źle skonfigurowany przełącznik, nieaktualne
+                    urządzenie), aby zagrożenie rozprzestrzeniło się na całą sieć.</p>
+            </div>
+
+            <div class="content-block">
+                <h3>Po co wdrażać bezpieczeństwo w LAN?</h3>
+                <p>Bezpieczeństwo sieci lokalnej wdraża się nie tylko „na wypadek ataku”, ale przede wszystkim po to,
+                    aby:</p>
+                <ul>
+                    <li>ograniczyć skutki błędów ludzkich i technicznych,</li>
+                    <li>zapobiec przypadkowemu dostępowi do danych,</li>
+                    <li>utrzymać ciągłość pracy organizacji,</li>
+                    <li>szybciej wykrywać problemy i reagować na nie,</li>
+                    <li>mieć kontrolę nad tym, co dzieje się w sieci.</li>
+                </ul>
+                <p>Dobrze zaprojektowana sieć lokalna:</p>
+                <ul>
+                    <li>jest bardziej odporna na incydenty,</li>
+                    <li>jest łatwiejsza w utrzymaniu,</li>
+                    <li>daje lepszą widoczność i kontrolę,</li>
+                    <li>pozwala szybciej rozwiązywać problemy.</li>
+                </ul>
+            </div>
+
+            <div class="content-block">
+                <h3>Bezpieczeństwo jako proces, nie jednorazowe działanie</h3>
+                <p>Bezpieczeństwo sieci lokalnej nie polega na „postawieniu jednego zabezpieczenia”, nie kończy się na
+                    etapie konfiguracji i wymaga regularnego utrzymania i przeglądów.</p>
+                <p>To proces, który obejmuje:</p>
+                <ul>
+                    <li>projektowanie architektury sieci,</li>
+                    <li>świadome decyzje konfiguracyjne,</li>
+                    <li>aktualizacje i monitoring,</li>
+                    <li>reagowanie na incydenty,</li>
+                    <li>wyciąganie wniosków i poprawę rozwiązań.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SLIDE 2 -->
+        <section id="slide2">
+            <h2>Zagrożenia w LAN</h2>
+            <p class="section-desc">Typowe źródła problemów i dlaczego LAN jest podatny na zagrożenia?</p>
+
+            <div class="img-container">
+                <img src="threats.png" alt="Zagrożenia w sieci">
+            </div>
+
+            <div class="content-block">
+                <p>Sieć lokalna skupia wszystkie kluczowe zasoby organizacji: użytkowników, dane, serwery i urządzenia
+                    infrastruktury. Problemy w LAN mają zwykle natychmiastowy i szeroki wpływ, ponieważ brak jest
+                    naturalnych barier pomiędzy urządzeniami.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h4>1. Użytkownicy i ich urządzenia</h4>
+                    <p>Komputery użytkowników są jednym z najsłabszych elementów sieci. Błędy użytkowników, nieaktualne
+                        systemy lub nieświadome działania mogą prowadzić do zagrożeń dla całej sieci lokalnej.</p>
+                </div>
+                <div class="card">
+                    <h4>2. Brak kontroli dostępu do sieci</h4>
+                    <p>Jeżeli każde urządzenie może swobodnie podłączyć się do sieci, trudno odróżnić sprzęt zaufany od
+                        nieznanego. Brak kontroli dostępu zwiększa ryzyko nieautoryzowanego użycia sieci.</p>
+                </div>
+                <div class="card">
+                    <h4>3. Błędy projektowe i konfiguracyjne</h4>
+                    <p>Niewłaściwa segmentacja, brak ograniczeń w komunikacji oraz dostęp administracyjny z
+                        niewłaściwych sieci powodują, że pojedynczy błąd może mieć poważne konsekwencje.</p>
+                </div>
+                <div class="card">
+                    <h4>4. Problemy warstwy drugiej sieci</h4>
+                    <p>Mechanizmy komunikacji lokalnej, działające automatycznie w sieci, mogą zostać nadużyte lub
+                        zakłócone, co prowadzi do niestabilności i problemów z bezpieczeństwem.</p>
+                </div>
+                <div class="card">
+                    <h4>5. Awarie i zdarzenia losowe</h4>
+                    <p>Sieć lokalna jest podatna na awarie sprzętu, błędy połączeń i przeciążenia. Brak zabezpieczeń i
+                        monitoringu sprawia, że nawet drobna awaria może zatrzymać pracę całej sieci.</p>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <h4>Wniosek</h4>
+                <p>Większość zagrożeń w LAN wynika nie z zaawansowanych ataków, lecz z braku kontroli, widoczności i
+                    separacji. Dlatego skuteczne bezpieczeństwo sieci lokalnej zaczyna się od świadomego projektowania i
+                    podstawowych zasad ochrony.</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 3 -->
+        <section id="slide3">
+            <h2>Triada CIA</h2>
+            <p class="section-desc">Podstawowe cele bezpieczeństwa.</p>
+
+            <div class="img-container">
+                <img src="cia_triad.png" alt="Triada CIA">
+            </div>
+
+            <div class="content-block">
+                <h3>Czym jest triada CIA?</h3>
+                <p>Triada CIA to podstawowy model opisujący cele bezpieczeństwa systemów IT, w tym sieci lokalnych.
+                    Określa ona, co tak naprawdę chcemy chronić i jakiego rodzaju problemy uznajemy za incydenty
+                    bezpieczeństwa.</p>
+                <p>Każde rozwiązanie bezpieczeństwa w sieci lokalnej powinno wspierać co najmniej jeden z tych trzech
+                    celów, a najlepiej wszystkie.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h4>Poufność (Confidentiality)</h4>
+                    <p>Dostęp do danych i zasobów mają wyłącznie osoby oraz urządzenia uprawnione.</p>
+                    <p>W sieci lokalnej dotyczy to m.in.:</p>
+                    <ul>
+                        <li>danych przesyłanych pomiędzy urządzeniami,</li>
+                        <li>zasobów takich jak serwery plików i aplikacje,</li>
+                        <li>paneli administracyjnych urządzeń sieciowych.</li>
+                    </ul>
+                    <p>Naruszenie poufności nie musi oznaczać kradzieży danych – wystarczy, że ktoś uzyska dostęp,
+                        którego nie powinien mieć.</p>
+                </div>
+                <div class="card">
+                    <h4>Integralność (Integrity)</h4>
+                    <p>Dane oraz konfiguracje nie są zmieniane w sposób nieautoryzowany.</p>
+                    <p>W kontekście LAN dotyczy to:</p>
+                    <ul>
+                        <li>konfiguracji switchy, routerów, AP,</li>
+                        <li>poprawności informacji o tym, „kto jest kim”,</li>
+                        <li>wiarygodności komunikacji.</li>
+                    </ul>
+                    <p>Utrata integralności prowadzi do sytuacji, w których sieć działa, ale nie działa tak, jak
+                        powinna.</p>
+                </div>
+                <div class="card">
+                    <h4>Dostępność (Availability)</h4>
+                    <p>Sieć i jej usługi są dostępne wtedy, gdy są potrzebne.</p>
+                    <p>W sieci lokalnej dostępność jest kluczowa, ponieważ:</p>
+                    <ul>
+                        <li>przerwa w działaniu sieci oznacza przerwę w pracy,</li>
+                        <li>problemy są natychmiast odczuwalne.</li>
+                    </ul>
+                    <p>Brak dostępności może wynikać zarówno z awarii, jak i z błędów konfiguracji czy przeciążenia
+                        sieci.</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>Dlaczego triada CIA jest ważna w LAN?</h4>
+                <p>Triada CIA pomaga uporządkować myślenie o bezpieczeństwie, ocenić skutki incydentów i podejmować
+                    świadome decyzje projektowe. Projektując lub analizując sieć lokalną, zawsze warto zadać pytanie:
+                    czy chronimy poufność? czy zachowana jest integralność? czy zapewniamy dostępność?</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 4 -->
+        <section id="slide4">
+            <h2>Podejście projektowe</h2>
+            <p>Zasada ograniczonego zaufania i minimalnych uprawnień.</p>
+
+            <div class="content-block">
+                <h3>Dlaczego potrzebne jest podejście projektowe?</h3>
+                <p>Bezpieczeństwo sieci lokalnej nie wynika z pojedynczych ustawień, lecz z sposobu zaprojektowania
+                    całej sieci. Jeżeli architektura zakłada pełne zaufanie do wszystkich urządzeń i użytkowników, nawet
+                    najlepsze zabezpieczenia punktowe nie zapewnią realnej ochrony.</p>
+                <p>Dlatego potrzebne jest podejście, które:</p>
+                <ul>
+                    <li>nie zakłada idealnego zachowania użytkowników,</li>
+                    <li>uwzględnia błędy i awarie,</li>
+                    <li>ogranicza skutki pojedynczych problemów.</li>
+                </ul>
+            </div>
+
+            <div class="grid-3" style="grid-template-columns: 1fr 1fr;">
+                <div class="card">
+                    <h4>Zasada ograniczonego zaufania</h4>
+                    <p>Oznacza, że sieć lokalna nie jest traktowana jako środowisko w pełni bezpieczne. Każde urządzenie
+                        i każdy dostęp podlegają weryfikacji, a brak jest „automatycznego” dostępu do całej sieci.</p>
+                    <p>W praktyce:</p>
+                    <ul>
+                        <li>podłączenie do sieci nie gwarantuje dostępu do wszystkich zasobów,</li>
+                        <li>dostęp przyznawany jest tylko tam, gdzie jest rzeczywiście potrzebny,</li>
+                        <li>komunikacja pomiędzy częściami sieci jest kontrolowana.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>Zasada minimalnych uprawnień</h4>
+                    <p>Polega na przyznawaniu najmniejszego możliwego zakresu dostępu, tylko na czas, w którym jest on
+                        potrzebny.</p>
+                    <p>Dotyczy to:</p>
+                    <ul>
+                        <li>użytkowników, urządzeń końcowych,</li>
+                        <li>usług i procesów,</li>
+                        <li>administratorów.</li>
+                    </ul>
+                    <p>Dzięki temu nawet w przypadku błędu lub incydentu zakres potencjalnych szkód jest ograniczony.
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h3>Jak te zasady wpływają na projekt sieci LAN?</h3>
+                <p>Zastosowanie tych zasad prowadzi do konkretnych decyzji projektowych, takich jak:</p>
+                <ul>
+                    <li>podział sieci na logiczne strefy,</li>
+                    <li>oddzielenie użytkowników od serwerów i infrastruktury,</li>
+                    <li>wydzielenie osobnej sieci do zarządzania,</li>
+                    <li>kontrola komunikacji pomiędzy segmentami.</li>
+                </ul>
+                <p>Sieć przestaje być jedną „płaską przestrzenią”, a staje się zbiorem kontrolowanych obszarów.</p>
+
+                <h3 style="margin-top: 20px;">Korzyści</h3>
+                <p>Tak zaprojektowana sieć jest bardziej odporna na błędy i incydenty, ogranicza możliwość
+                    rozprzestrzeniania się problemów, ułatwia diagnozowanie i reagowanie oraz pozwala lepiej kontrolować
+                    dostęp do zasobów.</p>
+                <p>Co istotne, podejście to można wdrażać stopniowo, bez konieczności przebudowy całej infrastruktury
+                    naraz.</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 5 -->
+        <section id="slide5">
+            <h2>Inwentaryzacja zasobów</h2>
+            <div class="img-container">
+                <img src="inventory.png" alt="Inwentaryzacja zasobów">
+            </div>
+
+            <div class="content-block">
+                <h3>Dlaczego inwentaryzacja jest kluczowa?</h3>
+                <p>Nie da się bezpiecznie zaprojektować ani utrzymywać sieci lokalnej, jeśli nie wiadomo, jakie
+                    urządzenia i usługi w niej działają. Brak inwentaryzacji prowadzi do: przypadkowej segmentacji,
+                    nieczytelnych reguł dostępu, luk w monitoringu oraz chaosu podczas incydentów.</p>
+                <p>Inwentaryzacja jest punktem wyjścia do wszystkich dalszych decyzji bezpieczeństwa.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h4>Zakres inwentaryzacji</h4>
+                    <p>Inwentaryzacja powinna obejmować całą infrastrukturę LAN:</p>
+                    <ul>
+                        <li>urządzenia sieciowe,</li>
+                        <li>serwery fizyczne i wirtualne,</li>
+                        <li>stacje robocze i laptopy,</li>
+                        <li>drukarki, kamery, urządzenia IoT,</li>
+                        <li>urządzenia tymczasowe (goście).</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>Identyfikacja urządzeń</h4>
+                    <p>Dla każdego urządzenia warto określić:</p>
+                    <ul>
+                        <li>nazwę i lokalizację,</li>
+                        <li>adres IP i MAC,</li>
+                        <li>sposób podłączenia,</li>
+                        <li>właściciela lub osobę odpowiedzialną,</li>
+                        <li>sposób zarządzania.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>Klasyfikacja zasobów</h4>
+                    <p>Po identyfikacji urządzenia należy podzielić na logiczne grupy, np. infrastruktura, serwery,
+                        użytkownicy, IoT, goście.</p>
+                    <p>Klasyfikacja powinna uwzględniać: znaczenie dla organizacji, poziom zaufania, wymagany dostęp.
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h3>Określenie potrzeb komunikacyjnych</h3>
+                <p>Dla każdej grupy zasobów należy określić: z jakimi innymi grupami musi się komunikować, jakie usługi
+                    są wymagane, czego nie powinna widzieć ani osiągać. To właśnie na tym etapie powstaje podstawa do
+                    projektowania VLAN-ów, reguł ACL i polityk dostępu.</p>
+
+                <div class="alert-box" style="margin-top: 20px;">
+                    <h4>Efekt dobrze wykonanej inwentaryzacji</h4>
+                    <p>Dobrze przeprowadzona inwentaryzacja porządkuje sieć, ujawnia zbędne lub nieznane urządzenia,
+                        upraszcza projektowanie zabezpieczeń i skraca czas reakcji na problemy. Bez niej bezpieczeństwo
+                        LAN zawsze będzie oparte na domysłach.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6 -->
+        <section id="slide6">
+            <h2>Architektura i segmentacja</h2>
+            <div class="img-container">
+                <img src="segmentation.png" alt="Segmentacja sieci">
+            </div>
+
+            <div class="content-block">
+                <h3>Czym jest segmentacja sieci?</h3>
+                <p>Segmentacja sieci polega na podziale sieci lokalnej na logiczne obszary (strefy), które są od siebie
+                    odseparowane i komunikują się ze sobą w kontrolowany sposób. Celem segmentacji nie jest
+                    skomplikowanie sieci, lecz ograniczenie zasięgu problemów i incydentów.</p>
+
+                <h3 style="margin-top:20px;">Dlaczego segmentacja jest kluczowa?</h3>
+                <p>W sieci bez segmentacji każdy komputer „widzi” każdy inny, błędy i zagrożenia rozchodzą się
+                    swobodnie, i trudno określić, co jest dozwolone. Segmentacja pozwala ograniczyć dostęp tylko do
+                    niezbędnych zasobów, oddzielić elementy o różnym poziomie zaufania oraz uprościć kontrolę.</p>
+            </div>
+
+            <div class="content-block">
+                <h3>Logiczne strefy bezpieczeństwa</h3>
+                <p>Segmentacja powinna wynikać z ról urządzeń. Typowe strefy to:</p>
+                <div class="grid-3">
+                    <div class="card"><strong>Sieć użytkowników</strong></div>
+                    <div class="card"><strong>Sieć serwerów</strong></div>
+                    <div class="card"><strong>Sieć zarządzania</strong></div>
+                    <div class="card"><strong>Sieć IoT/Drukarki</strong></div>
+                    <div class="card"><strong>Sieć gościnna</strong></div>
+                </div>
+                <p style="margin-top: 15px;">Każda strefa ma inny poziom zaufania i inne wymagania dotyczące
+                    komunikacji.</p>
+            </div>
+
+            <div class="content-block">
+                <h3>Granice zaufania i VLAN</h3>
+                <p>Każda granica pomiędzy strefami jest miejscem, w którym należy kontrolować ruch, jasno określić
+                    zasady komunikacji i rejestrować zdarzenia. Im wyraźniej wyznaczone są granice, tym łatwiej jest
+                    zabezpieczać i utrzymywać sieć.</p>
+                <p>VLAN jest narzędziem technicznym umożliwiającym segmentację, ale sama obecność VLAN-ów nie zapewnia
+                    bezpieczeństwa. Bezpieczeństwo wynika ze świadomego podziału na strefy, kontroli komunikacji i
+                    konsekwentnego egzekwowania zasad.</p>
+
+                <div class="info-box">
+                    <h4>Dobre praktyki projektowe</h4>
+                    <p>Warto zaczynać od prostego podziału, jasno dokumentować role stref, unikać „wszystko ze
+                        wszystkim” i zakładać możliwość rozwoju. Dobrze zaprojektowana segmentacja upraszcza kolejne
+                        etapy zabezpieczania sieci.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7 -->
+        <section id="slide7">
+            <h2>Kontrola ruchu</h2>
+            <div class="content-block">
+                <h3>Dlaczego kontrola ruchu jest konieczna?</h3>
+                <p>Segmentacja sieci ma sens tylko wtedy, gdy komunikacja pomiędzy segmentami jest kontrolowana. Bez
+                    kontroli ruch podział na strefy jest wyłącznie logiczny. Kontrola ruchu pozwala egzekwować zasady
+                    bezpieczeństwa wynikające z architektury sieci.</p>
+
+                <h3 style="margin-top: 20px;">Zasada domyślnego blokowania</h3>
+                <div class="alert-box">
+                    <p>Podstawową zasadą kontroli ruchu jest: <strong>domyślnie blokuj, zezwalaj tylko na to, co
+                            konieczne.</strong></p>
+                </div>
+                <p>Oznacza to, że: brak reguły = brak komunikacji, każda dozwolona komunikacja ma uzasadnienie, i
+                    łatwiej wykryć ruch nietypowy lub błędny. Takie podejście znacząco zmniejsza powierzchnię ataku.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h4>Definiowanie dozwolonej komunikacji</h4>
+                    <p>Należy określić: które strefy mogą się komunikować, w jakim kierunku, z jakich usług i
+                        protokołów. Dzięki temu ruch jest przewidywalny i łatwiej diagnozować problemy.</p>
+                </div>
+                <div class="card">
+                    <h4>Kontrola a wydajność</h4>
+                    <p>Kontrola ruchu to nie tylko bezpieczeństwo, ale także mniejsze obciążenie sieci, ograniczenie
+                        zbędnego ruchu i lepsza stabilność usług.</p>
+                </div>
+                <div class="card">
+                    <h4>Dokumentacja</h4>
+                    <p>Każda decyzja powinna być opisana i uzasadniona. Brak dokumentacji prowadzi do sytuacji, w której
+                        reguły są modyfikowane „na oko”, co z czasem osłabia bezpieczeństwo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8 -->
+        <section id="slide8">
+            <h2>Kontrola dostępu przewodowego</h2>
+            <div class="content-block">
+                <h3>Dlaczego kontrola dostępu jest potrzebna?</h3>
+                <p>W wielu sieciach lokalnych obowiązuje założenie, że każde urządzenie podłączone kablem do gniazda
+                    jest urządzeniem zaufanym. W praktyce sieć nie rozróżnia urządzeń znanych i nieznanych, brak jest
+                    kontroli nad tym, kto faktycznie korzysta z sieci. Kontrola dostępu pozwala zerwać to założenie.</p>
+            </div>
+
+            <div class="content-block">
+                <h3>Czym jest kontrola dostępu do sieci?</h3>
+                <p>Kontrola dostępu do sieci przewodowej polega na weryfikacji urządzenia lub użytkownika, określeniu,
+                    do której części sieci ma trafić, i możliwości odmowy dostępu w przypadku niezgodności. Dostęp do
+                    sieci przestaje być automatyczny i staje się świadomie przyznawanym uprawnieniem.</p>
+
+                <div class="grid-3">
+                    <div class="card">
+                        <h4>Poziomy kontroli</h4>
+                        <p>Fizyczny (szafy, gniazda), Logiczny (port security), Organizacyjny (odpowiedzialność). Nawet
+                            podstawowe mechanizmy zwiększają bezpieczeństwo.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Ograniczanie skutków</h4>
+                        <p>Dzięki kontroli dostępu nieautoryzowane urządzenia są izolowane, a nowe nie trafiają
+                            automatycznie do sieci produkcyjnej.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Integracja z segmentacją</h4>
+                        <p>Urządzenie po podłączeniu trafia do właściwej strefy (np. VLAN IoT, VLAN Goście)
+                            automatycznie.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9 -->
+        <section id="slide9">
+            <h2>IEEE 802.1X</h2>
+            <div class="img-container">
+                <img src="auth_flow.png" alt="Schemat 802.1X">
+            </div>
+
+            <div class="content-block">
+                <h3>Czym jest IEEE 802.1X?</h3>
+                <p>IEEE 802.1X to standard uwierzytelniania dostępu do sieci lokalnej. Wprowadza zasadę:
+                    <strong>„najpierw się uwierzytelnij, potem korzystaj z sieci”.</strong>
+                </p>
+                <P>Bez 802.1X każde urządzenie podłączone do gniazda automatycznie trafia do sieci, a fizyczny dostęp
+                    oznacza logiczny dostęp. 802.1X eliminuje to założenie.</P>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h4>Jak to działa?</h4>
+                    <p>Wymaga 3 elementów: Suplikant (urządzenie końcowe), Autentykator (switch/AP), Serwer
+                        uwierzytelniający (RADIUS). Dopiero po weryfikacji port jest otwierany.</p>
+                </div>
+                <div class="card">
+                    <h4>Zasada Zero Trust</h4>
+                    <p>802.1X to praktyczna realizacja zasady ograniczonego zaufania i minimalnych uprawnień. Dostęp nie
+                        jest domyślny, zależy od tożsamości.</p>
+                </div>
+                <div class="card">
+                    <h4>Spójność</h4>
+                    <p>Może być stosowany w sieci przewodowej i Wi-Fi, zapewniając jednolite zasady bezpieczeństwa dla
+                        wszystkich mediów.</p>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <h4>Korzyści</h4>
+                <p>Zastosowanie 802.1X pozwala blokować nieautoryzowane urządzenia, automatycznie przypisywać VLAN-y i
+                    zwiększyć kontrolę. Jest to jedno z najskuteczniejszych rozwiązań bezpieczeństwa LAN.</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 10 -->
+        <section id="slide10">
+            <h2>Zabezpieczenia Warstwy 2</h2>
+            <div class="info-box">
+                <p>Warstwa druga sieci odpowiada za to, jak urządzenia komunikują się lokalnie. Mechanizmy te działają
+                    automatycznie i "pod spodem", przez co problemy są trudne do zdiagnozowania i mogą wpływać na całą
+                    sieć.</p>
+            </div>
+
+            <div class="grid-3" style="grid-template-columns: 1fr 1fr;">
+                <div class="card">
+                    <h4>Typowe zagrożenia</h4>
+                    <p>Podszywanie się (Spoofing), przekierowywanie ruchu (Man-in-the-Middle), niekontrolowane
+                        rozgłaszanie, pętle sieciowe.</p>
+                </div>
+                <div class="card">
+                    <h4>Ochrona przed nieautoryzowanymi usługami</h4>
+                    <p>Zabezpieczenia przed fałszywymi serwerami DHCP (DHCP Snooping) czy bramami (ARP Inspection).
+                        Pozwalają odróżnić zaufane źródła od niepożądanych.</p>
+                </div>
+                <div class="card">
+                    <h4>Stabilność</h4>
+                    <p>Ochrona przed pętlami (STP, BPDU Guard) i przeciążeniami (Storm Control). Mechanizmy te utrzymują
+                        sieć w stanie przewidywalnym.</p>
+                </div>
+                <div class="card">
+                    <h4>Spójność konfiguracji</h4>
+                    <p>Zabezpieczenia L2 muszą być wdrażane konsekwentnie i jednakowo na całej infrastrukturze. Jeden
+                        błędny switch może osłabić całość.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 11 -->
+        <section id="slide11">
+            <h2>Bezpieczeństwo Wi-Fi</h2>
+            <div class="content-block">
+                <h3>Dlaczego Wi-Fi wymaga szczególnej uwagi?</h3>
+                <p>Sieć bezprzewodowa różni się tym, że medium transmisyjne nie jest fizycznie ograniczone. Sygnał
+                    radiowy wychodzi poza budynek i jest dostępny dla osób postronnych. Wi-Fi stanowi naturalny punkt
+                    styku LAN z otoczeniem.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h4>Wi-Fi jako część LAN</h4>
+                    <p>Urządzenia Wi-Fi korzystają z tych samych zasobów i podlegają tym samym zasadom. Błędem jest
+                        traktowanie Wi-Fi jako "mniej istotnej" sieci.</p>
+                </div>
+                <div class="card">
+                    <h4>Ryzyka</h4>
+                    <p>Nieautoryzowany dostęp, trudna identyfikacja użytkowników, źródło niestabilności, zwiększona
+                        powierzchnia ataku.</p>
+                </div>
+                <div class="card">
+                    <h4>Zasady projektowania</h4>
+                    <p>Wymuszaj uwierzytelnianie (WPA2/3 Enterprise), separuj sieć (VLAN), ograniczaj dostęp zgodnie z
+                        rolą, monitoruj połączenia.</p>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h3>Spójność polityk bezpieczeństwa</h3>
+                <p>Zasady obowiązujące w sieci przewodowej powinny mieć swoje odpowiedniki w sieci bezprzewodowej. Brak
+                    spójności prowadzi do sytuacji, w której Wi-Fi staje się „łatwiejszą drogą” do zasobów chronionych w
+                    LAN.</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 12 -->
+        <section id="slide12">
+            <h2>Zarządzanie infrastrukturą</h2>
+            <div class="content-block">
+                <h3>Krytyczność zarządzania</h3>
+                <p>Urządzenia sieciowe (switche, routery) to kręgosłup sieci. Dostęp do ich konfiguracji oznacza pełną
+                    kontrolę nad ruchem i zabezpieczeniami. Dostęp administracyjny jest zasobem krytycznym.</p>
+            </div>
+
+            <div class="alert-box">
+                <h4>Oddzielenie dostępu administracyjnego</h4>
+                <p>Podstawowa zasada: oddziel ruch administracyjny od ruchu użytkowników. Wydziel osobną sieć
+                    (Management VLAN), ogranicz dostęp tylko do wybranych stacji (Jump host), nie pozwalaj na
+                    zarządzanie ze "zwykłej" sieci.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h4>Kontrola kto, skąd i jak</h4>
+                    <p>Jasne zasady: kto ma uprawnienia, z jakich IP może się łączyć, jakimi protokołami (SSH vs
+                        Telnet). Dostęp nie może być powszechny ani anonimowy.</p>
+                </div>
+                <div class="card">
+                    <h4>Błędy administracyjne</h4>
+                    <p>Dobre praktyki pomagają szybko cofnąć zmiany i ograniczyć wpływ błędów ludzkich na sieć.</p>
+                </div>
+                <div class="card">
+                    <h4>Audyt i odpowiedzialność</h4>
+                    <p>Każda zmiana musi być możliwa do prześledzenia i przypisana do osoby. Brak logowania zmian
+                        prowadzi do chaosu.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 13 -->
+        <section id="slide13">
+            <h2>Utrzymanie i aktualizacje</h2>
+            <div class="img-container">
+                <img src="maintenance.png" alt="Cykl utrzymania">
+            </div>
+
+            <div class="content-block">
+                <h3>Dlaczego utrzymanie jest częścią bezpieczeństwa?</h3>
+                <p>Nawet najlepiej zaprojektowana sieć traci bezpieczeństwo bez utrzymania. Zmieniają się zagrożenia,
+                    soft, i urządzenia. Bezpieczeństwo to proces ciągły.</p>
+            </div>
+
+            <div class="grid-3" style="grid-template-columns: 1fr 1fr;">
+                <div class="card">
+                    <h4>Aktualizacje (Patching)</h4>
+                    <p>Urządzenia sieciowe mają luki. Regularne aktualizacje firmware'u są konieczne, by uniknąć
+                        przejęcia kontroli nad sprzętem.</p>
+                </div>
+                <div class="card">
+                    <h4>Zarządzanie zmianami</h4>
+                    <p>Każda zmiana powinna być świadoma, zaplanowana i odwracalna. Nieudokumentowane zmiany to
+                        proszenie się o kłopoty.</p>
+                </div>
+                <div class="card">
+                    <h4>Spójność konfiguracji</h4>
+                    <p>Urządzenia powinny być konfigurowane w sposób standardowy (takie same zasady NTP, Syslog, AAA).
+                        Ułatwia to zarządzanie.</p>
+                </div>
+                <div class="card">
+                    <h4>Przeglądy</h4>
+                    <p>Regularnie weryfikuj sieć - szukaj nieaktualnych urządzeń, zbędnych reguł firewall czy
+                        niezamkniętych portów.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 14 -->
+        <section id="slide14">
+            <h2>Usługi infrastrukturalne (DNS, DHCP, NTP)</h2>
+            <div class="content-block">
+                <h3>Rola i wrażliwość</h3>
+                <p>Usługi te są podstawą działania sieci. Są domyślnie zaufane przez urządzenia. Jeśli zostaną błędnie
+                    skonfigurowane lub przejęte (np. fałszywy DNS), cała sieć może zostać przekierowana lub
+                    sparaliżowana.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h4>Zasady projektowania</h4>
+                    <p>Uruchamiaj tylko na zaufanych systemach, ograniczaj dostęp sieciowy do serwerów usług, określ
+                        jasno zakres działania.</p>
+                </div>
+                <div class="card">
+                    <h4>Kontrola i separacja</h4>
+                    <p>Logicznie odseparuj serwery usług od sieci zwykłych użytkowników. Monitoruj ich działanie.</p>
+                </div>
+                <div class="card">
+                    <h4>NTP (Czas)</h4>
+                    <p>Spójny czas jest KRYTYCZNY dla analizy logów i certyfikatów bezpieczeństwa. Bez NTP nie dojdziesz
+                        przyczyny awarii.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 15 -->
+        <section id="slide15">
+            <h2>Monitoring i logi</h2>
+            <div class="img-container">
+                <img src="dashboard.png" alt="Monitoring sieci">
+            </div>
+
+            <div class="content-block">
+                <h3>Widoczność to podstawa</h3>
+                <p>Bez monitorowania sieć jest „czarną skrzynką”. Problemy zauważasz dopiero, gdy użytkownicy dzwonią.
+                    Monitoring pozwala wykryć problemy wcześniej i szybciej diagnozować przyczyny.</p>
+            </div>
+
+            <div class="content-block">
+                <h3>Co i jak monitorować?</h3>
+                <ul>
+                    <li><strong>Stan urządzeń:</strong> Dostępność, obciążenie CPU/RAM.</li>
+                    <li><strong>Ruch:</strong> Nietypowe skoki (np. w nocy), błędy na portach.</li>
+                    <li><strong>Logi (Syslog):</strong> Logi bezpieczeństwa, zmiany konfiguracji, nieudane logowania.
+                    </li>
+                </ul>
+                <div class="info-box">
+                    <p>Dobrze zaprojektowany monitoring skraca czas reakcji, ogranicza skutki incydentów i dostarcza
+                        danych do podejmowania decyzji. To integralna część bezpieczeństwa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 16 -->
+        <section id="slide16">
+            <h2>Kopie zapasowe</h2>
+            <div class="content-block">
+                <h3>Kopie jako element bezpieczeństwa</h3>
+                <p>Bezpieczeństwo to także zdolność do szybkiego powrotu do działania po awarii lub ataku. Brak kopii
+                    zapasowych powoduje, że mały problem staje się katastrofą.</p>
+                <p>Co backupować? Nie tylko dane, ale też <strong>konfigurację urządzeń sieciowych (switche,
+                        routery)</strong>. Odzyskanie skomplikowanej konfiguracji z pamięci jest niemożliwe.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h4>Regularność i automatyzacja</h4>
+                    <p>Backup musi być robiony automatycznie i często. "Ręczny backup od czasu do czasu" to fikcja.</p>
+                </div>
+                <div class="card">
+                    <h4>Odtwarzanie</h4>
+                    <p>Backup, którego nie testowano, nie istnieje. Testuj procedury odzyskiwania konfiguracji.</p>
+                </div>
+                <div class="card">
+                    <h4>Odporność</h4>
+                    <p>Dobry backup skraca czas przestoju, zmniejsza stres i pozwala szybko wrócić do pracy.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 17 -->
+        <section id="slide17">
+            <h2>Reagowanie na incydenty</h2>
+            <div class="img-container">
+                <img src="response.png" alt="Reagowanie na incydenty">
+            </div>
+
+            <div class="content-block">
+                <h3>Dlaczego reagowanie jest ważne?</h3>
+                <p>Nawet najlepsze zabezpieczenia nie dają 100% gwarancji. O poziomie bezpieczeństwa decyduje też to,
+                    jak szybko i skutecznie reagujemy na problemy. Incydent to nie tylko atak hakerski, to też awaria
+                    czy błąd konfiguracji.</p>
+            </div>
+
+            <div class="content-block">
+                <h3>Etapy reagowania</h3>
+                <ul>
+                    <li><strong>Identyfikacja:</strong> Co się dzieje? Jaki jest zakres?</li>
+                    <li><strong>Izolacja:</strong> Odcięcie źródła problemu (np. portu, urządzenia).</li>
+                    <li><strong>Analiza i Naprawa:</strong> Usunięcie przyczyny.</li>
+                    <li><strong>Przywrócenie:</strong> Powrót do normalności.</li>
+                    <li><strong>Wnioski:</strong> Co poprawić na przyszłość?</li>
+                    </u l>
+
+                    <div class="info-box" style="margin-top: 20px;">
+                        <p>Reagowanie nie powinno być improwizacją. Przygotowane procedury skracają czas reakcji.</p>
+                    </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 18 -->
+        <section id="slide18">
+            <h2>Podsumowanie</h2>
+            <div class="content-block">
+                <h3>Bezpieczeństwo jako proces</h3>
+                <p>Bezpieczeństwo sieci lokalnej nie jest pojedynczym rozwiązaniem. To ciągły proces projektowania,
+                    konfiguracji, utrzymania i reagowania. Sieć jest tak bezpieczna, jak jej najsłabsze ogniwo.</p>
+
+                <h3 style="margin-top:20px;">Kluczowe filary</h3>
+                <ul>
+                    <li>Jasne cele (Triada CIA).</li>
+                    <li>Podział sieci na strefy (Segmentacja, Zero Trust).</li>
+                    <li>Kontrola dostępu i komunikacji.</li>
+                    <li>Bezpieczne zarządzanie i widoczność (Monitoring).</li>
+                    <li>Przygotowanie na awarie (Backup, Procedury).</li>
+                </ul>
+
+                <h3 style="margin-top:20px;">Wdrożenie</h3>
+                <p>Najlepsze efekty daje podejście etapowe: poznaj sieć -> podziel na strefy -> zabezpiecz dostęp ->
+                    wdróż monitoring -> przygotuj procedury.</p>
+            </div>
+
+            <div class="alert-box" style="background-color: #d7eefb; border-color: #1a73e8;">
+                <h4 style="color: #1a73e8;">Ostateczny wniosek</h4>
+                <p>Bezpieczna sieć lokalna nie powstaje przypadkiem i nie utrzymuje się sama. Jest wynikiem świadomych
+                    decyzji technicznych, organizacyjnych i operacyjnych.</p>
+            </div>
+        </section>
+        <footer>
+            <p>&copy; 2026 Jakub Orepuk nr albumu 81282
+                <br />
+                <a href="mailto:szx87518@student.szczecin.merito.pl">szx87518@student.szczecin.merito.pl</a>
+                <br />
+                Wykład: Administracja Sieci Komputerowych.
+            </p>
+        </footer>
+    </main>
+
+    <div class="fab" title="Wróć na górę">
+        ↑
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
