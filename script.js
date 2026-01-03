@@ -2,24 +2,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Navigation highlighting
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-links a');
-    
+
     // Smooth Scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection) {
                 targetSection.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
-                
+
                 // Close mobile menu if open
                 const sidebar = document.querySelector('.sidebar');
+                const menuToggle = document.querySelector('.menu-toggle');
+
                 if (window.innerWidth <= 900 && sidebar.classList.contains('open')) {
                     sidebar.classList.remove('open');
+                    if (menuToggle) {
+                        menuToggle.textContent = '☰';
+                    }
                 }
             }
         });
@@ -43,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (activeLink) {
                     activeLink.classList.add('active');
                 }
-                
+
                 // Add visible class for animation
                 entry.target.classList.add('visible');
             }
@@ -74,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 behavior: 'smooth'
             });
         });
-        
+
         // Show/Hide FAB based on scroll position
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) {
